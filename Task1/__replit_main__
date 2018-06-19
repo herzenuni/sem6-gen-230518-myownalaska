@@ -1,0 +1,19 @@
+class fibonacci:
+    def __init__(self,n):
+        self.lst_f = (lambda n, f=[0,1]: f[:n]+[f.append(f[-1] + f[-2]) or f[-1] for i in range(n-len(f))])(n)
+
+    def generator(self,n):
+        f1, f2 = 0, 1
+        for i in range(n):
+            f1, f2 = f2, f1 + f2
+            yield f1
+
+    def next(self):
+        self.generator.next()
+fib = fibonacci(10)
+x = fib.generator(10)
+print(fib.lst_f)
+print(list(fib.generator(10)))
+print(next(x))
+print(next(x))
+print(next(x))
